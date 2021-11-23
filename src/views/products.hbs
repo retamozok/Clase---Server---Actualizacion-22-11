@@ -1,0 +1,38 @@
+{{>nav}}
+
+<h1>Lista de Productos: Mercado Online</h1>
+
+<form action="/productos" method="post">
+    <input placeholder="Ingresar Nombre" type="text" name="nombre">
+    <input placeholder="Ingresar Precio" type="number" name="precio">
+    <input placeholder="Ingresar Stock" type="number" name="stock">
+    <button type="submit">Crear Producto</button>
+
+</form>
+
+<div class="row justify-content-around">
+  {{#each listadoProductos}}
+    <div class="card" style="width: 18rem;">
+      <img src="" class="card-img-top" alt="">
+       <div class="card-body">
+       
+      
+  <form action="/productos?_method=PUT" method="post">
+   <input type="hidden" name="id" value={{id}}>
+    <h5 class="card-title">{{nombre}}</h5>
+      <input name="nombre" placeholder={{nombre}}>
+    <h6>Precio: {{precio}}</h6>
+      <input name="precio" placeholder={{precio}}>
+    <h6>Cantidad de Stock: {{stock}}</h6>
+      <input name="stock" placeholder={{stock}}>
+   <button type="submit">Actualizar</button>
+  </form>
+      
+   <form action="productos?_method=DELETE" method="post">
+    <input type="hidden" name="id" value={{id}}>
+     <button type="submit">Borrar</button>
+   </form>
+   </div>
+  </div> 
+ {{/each}}
+</div>
